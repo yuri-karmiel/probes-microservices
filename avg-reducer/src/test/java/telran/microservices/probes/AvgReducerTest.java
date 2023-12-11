@@ -24,7 +24,6 @@ import telran.microservices.probes.entities.ListProbeValues;
 import telran.microservices.probes.repo.ListProbeRepo;
 
 @SpringBootTest
-//@Import(TestChannelBinderConfiguration.class)
 public class AvgReducerTest {
 	private static final long PROBE_ID_NO_AVG = 123;
 	private static final long PROBE_ID_AVG = 124;

@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import telran.microservices.probes.dto.EmailData;
 import telran.microservices.probes.service.DataProvider;
+import telran.spring.exceptions.NotFoundException;
 @WebMvcTest
 class DataProviderControllerTest {
 private static final long SENSOR_ID_NORMAL = 123l;
@@ -42,7 +43,7 @@ EmailData emailData = new EmailData(new String[] {"vasya@gmail.com", "petya@gmai
 	}
 	@Test
 	void dataNotExistTest() throws Exception {
-		when(dataProvider.getEmailData(SENSOR_ID_NOT_EXIST)).thenThrow(new IllegalArgumentException(ERROR_MESSAGE));
+		when(dataProvider.getEmailData(SENSOR_ID_NOT_EXIST)).thenThrow(new NotFoundException(ERROR_MESSAGE));
 		String response = mockMvc.perform(get("http://localhost:8080/email/data/" + SENSOR_ID_NOT_EXIST))
 				.andDo(print()).andExpect(status().isNotFound()).andReturn()
 				.getResponse().getContentAsString();

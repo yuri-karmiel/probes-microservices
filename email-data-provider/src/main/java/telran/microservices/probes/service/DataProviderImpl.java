@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import telran.microservices.probes.dto.EmailData;
 import telran.microservices.probes.entities.Person;
 import telran.microservices.probes.repo.*;
+import telran.spring.exceptions.NotFoundException;
 
 @Service
 @Transactional(readOnly = true)
@@ -20,7 +21,7 @@ public class DataProviderImpl implements DataProvider {
 	public EmailData getEmailData(long sensorId) {
 		List<Person> persons = personRepo.findBySensorId(sensorId);
 		if (persons.isEmpty()) {
-			throw new IllegalArgumentException("no person for sensor " + sensorId);
+			throw new NotFoundException("no person for sensor " + sensorId);
 		}
 		String[] emailAddresses = persons.stream().map(Person::getEmail)
 				.toArray(String[]::new);

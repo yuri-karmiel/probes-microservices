@@ -15,14 +15,8 @@ import telran.microservices.probes.service.DataProvider;
 public class DataProviderController {
 	final DataProvider dataProvider;
 	@GetMapping("email/data/{id}")
-	ResponseEntity<?> getEmailData(@PathVariable long id) {
-		ResponseEntity<?> result = null;
-		try {
+	EmailData getEmailData(@PathVariable long id) {
 			EmailData emailData = dataProvider.getEmailData(id);
-			result = new ResponseEntity<EmailData>(emailData, HttpStatus.OK);
-		} catch (Exception e) {
-			result = new ResponseEntity<String>(e.getMessage(), HttpStatus.NOT_FOUND);
-		}
-		return result;
+		return emailData;
 	}
 }

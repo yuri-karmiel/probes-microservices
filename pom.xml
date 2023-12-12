@@ -103,5 +103,6 @@
 		<module>avg-reducer</module>
 		<module>email-data-provider</module>
 		<module>config-server</module>
+		<module>gateway</module>
 	</modules>
 </project>

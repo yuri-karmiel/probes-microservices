@@ -23,8 +23,8 @@ public class ProxyServiceImpl implements ProxyService {
 	}
 
 	private String getRoutedURI(HttpServletRequest request) {
-		String receivedURI = request.getRequestURI();//example, /pulse/values/max/8
-		String firstURN = receivedURI.split("/+")[1]; //pulse
+		String receivedURI = request.getRequestURI();//example, email
+		String firstURN = receivedURI.split("/+")[1]; //email
 		log.trace("firstURN is {}", firstURN);
 		if(!urlsMap.containsKey(firstURN)) {
 			throw new IllegalArgumentException(firstURN + " Not found" );

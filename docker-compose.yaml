@@ -1,0 +1,43 @@
+version: "3"
+services:
+   config-server: 
+       build: 
+          config-server   #path to the directory where Dockerfile exists
+       deploy:
+          resources: 
+             limits: 
+                cpus: '0.5'
+                memory: 300M
+             reservations:
+                cpus: '0.3'
+                memory: 200M            
+   
+   
+   email-data-provider: 
+       build: 
+          email-data-provider
+       deploy:
+          resources: 
+             limits: 
+                cpus: '0.5'
+                memory: 300M
+             reservations:
+                cpus: '0.3'
+                memory: 200M    
+       environment:
+             - POSTGRESQL_PASSWORD=${POSTGRESQL_PASSWORD}
+       
+   
+   gateway:
+      build: gateway
+      deploy:
+         resources: 
+             limits: 
+                cpus: '0.5'
+                memory: 300M
+             reservations:
+                cpus: '0.3'
+                memory: 200M    
+     
+      ports: 
+            - 9292:9292 

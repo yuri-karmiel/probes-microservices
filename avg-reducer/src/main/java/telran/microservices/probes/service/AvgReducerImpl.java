@@ -2,6 +2,7 @@ package telran.microservices.probes.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ public class AvgReducerImpl implements AvgReducer {
 	@Value("${app.reducing.size:100}")
 	int reducingSize;
 	@Override
+	@Transactional
 	public Integer avgReduce(Probe probe) {
 		long id = probe.id();
 		Integer res = null;
